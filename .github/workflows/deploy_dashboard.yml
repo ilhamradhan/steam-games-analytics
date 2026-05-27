@@ -36,7 +36,7 @@ jobs:
         run: pip install dbt-core dbt-duckdb && cp ../profiles.yml.example ../profiles.yml && dbt run --profiles-dir ..
 
       - name: Copy DuckDB to dashboard sources
-        run: rm sources/steam_games/steam_games.duckdb && cp ../steam_games.duckdb sources/steam_games/steam_games.duckdb
+        run: cp ../steam_games.duckdb sources/steam_games/steam_games.duckdb
 
       - uses: actions/setup-node@v4
         with:
