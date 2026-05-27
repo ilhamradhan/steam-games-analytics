@@ -1,0 +1,4 @@
+name: steam_games
+type: duckdb
+options:
+  filename: steam_games.duckdb
