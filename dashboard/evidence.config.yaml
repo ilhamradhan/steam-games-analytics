@@ -2,7 +2,8 @@ appearance:
   default: system
   switcher: true
 
-basePath: /steam-games-analytics
+deployment:
+  basePath: /steam-games-analytics
 title: Steam Games Analytics
 description: Comprehensive analytics dashboard for Steam gaming marketplace insights
 
