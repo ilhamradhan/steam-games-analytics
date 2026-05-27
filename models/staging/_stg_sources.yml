@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: stg_games__base
+    description: "Base staging table — reads from raw source, casts types, adds load_timestamp"
+    columns:
+      - name: appid
+        description: "Unique Steam application ID (cast to integer)"
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: "Game title as listed on Steam"
+      - name: release_date
+        description: "Release date (cast from string to DATE)"
+      - name: estimated_owners
+        description: "Estimated ownership range (e.g. '0 - 20000')"
+      - name: peak_ccu
+        description: "Peak concurrent users"
+      - name: required_age
+        description: "Minimum age required to play"
+      - name: price
+        description: "Current price in USD"
+      - name: dlc_count
+        description: "Number of downloadable content items"
+      - name: supported_languages
+        description: "Languages supported by the game"
+      - name: load_timestamp
+        description: "Timestamp when row was loaded"
+
+  - name: stg_games__cleaned
+    description: "Cleaned staging — deduplicated, standardized column names, NULLs handled, text trimmed"
+    columns:
+      - name: appid
+        description: "Unique Steam application ID"
+        tests:
+          - not_null
+          - unique
+      - name: game_name
+        description: "Cleaned game title (lowercased, trimmed)"
+        tests:
+          - not_null
+      - name: release_date
+        description: "Game release date"
+      - name: price
+        description: "Price in USD, zero-filled for free games"
+      - name: metacritic_score
+        description: "Metacritic critic score (0 if missing)"
+      - name: user_score
+        description: "User score from Steam (0 if missing)"
+      - name: positive_count
+        description: "Count of positive reviews"
+      - name: negative_count
+        description: "Count of negative reviews"
+      - name: avg_playtime_forever
+        description: "Average total playtime in minutes"
+      - name: developers
+        description: "Array of developer names"
+      - name: publishers
+        description: "Array of publisher names"
+      - name: genres
+        description: "Array of genre names"
+
+  - name: stg_games__with_scores
+    description: "Scored staging — normalized scores (0-1), score tiers (excellent/good/ok/poor/unrated), review count"
+    columns:
+      - name: appid
+        description: "Unique Steam application ID"
+        tests:
+          - not_null
+          - unique
+      - name: game_name
+        description: "Game title"
+        tests:
+          - not_null
+      - name: metacritic_score
+        description: "Raw metacritic score (0-100)"
+      - name: user_score
+        description: "Raw user score (0-10)"
+      - name: metacritic_normalized
+        description: "Metacritic score normalized to 0-1 scale"
+      - name: user_score_normalized
+        description: "User score normalized to 0-1 scale"
+      - name: metacritic_tier
+        description: "Metacritic score tier"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['excellent', 'good', 'ok', 'poor', 'unrated']
+      - name: user_score_tier
+        description: "User score tier"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['excellent', 'good', 'ok', 'poor', 'unrated']
+      - name: review_count
+        description: "Total reviews (positive + negative)"
+      - name: positive_count
+        description: "Count of positive reviews"
+      - name: negative_count
+        description: "Count of negative reviews"
