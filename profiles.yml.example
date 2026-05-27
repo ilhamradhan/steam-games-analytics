@@ -1,0 +1,9 @@
+steam_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: './steam_games.duckdb'
+      schema: dev
+      threads: 4
+      timeout_seconds: 300

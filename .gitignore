@@ -1,0 +1,11 @@
+profiles.yml
+target/
+dbt_packages/
+*.duckdb
+*.duckdb.wal
+*.parquet
+*.csv
+venv/
+__pycache__/
+*.pyc
+.env
