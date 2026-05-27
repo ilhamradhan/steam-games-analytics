@@ -1,0 +1,43 @@
+name: CI dbt run and test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat <<EOF > ~/.dbt/profiles.yml
+          steam_analytics:
+            target: ci
+            outputs:
+              ci:
+                type: duckdb
+                path: './steam_games.duckdb'
+                schema: dev
+                threads: 4
+          EOF
+
+      - name: Load data
+        run: python load_steam_data.py
+
+      - name: Run dbt models
+        run: dbt run
+
+      - name: Run dbt tests
+        run: dbt test
