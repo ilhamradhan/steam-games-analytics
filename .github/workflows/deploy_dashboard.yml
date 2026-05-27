@@ -1,0 +1,75 @@
+name: Deploy Evidence Dashboard to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dashboard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install duckdb pyarrow pandas requests
+
+      - name: Build DuckDB database
+        run: python ../load_steam_data.py
+
+      - name: Run dbt models
+        run: pip install dbt-core dbt-duckdb && cp ../profiles.yml.example ../profiles.yml && dbt run --profiles-dir ..
+
+      - name: Copy DuckDB to dashboard sources
+        run: rm sources/steam_games/steam_games.duckdb && cp ../steam_games.duckdb sources/steam_games/steam_games.duckdb
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: dashboard/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('dashboard/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run sources
+        run: npm run sources
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
