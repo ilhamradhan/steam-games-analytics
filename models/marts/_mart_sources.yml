@@ -1,0 +1,122 @@
+version: 2
+
+models:
+  - name: mart_games_performance
+    description: "Final denormalized game analytics table — one row per game with all performance metrics, optimized for BI tools"
+    columns:
+      - name: appid
+        description: "Unique Steam application ID"
+        tests:
+          - not_null
+          - unique
+      - name: game_name
+        description: "Game title"
+        tests:
+          - not_null
+      - name: release_date
+        description: "Game release date"
+      - name: price
+        description: "Current price in USD"
+      - name: metacritic_score
+        description: "Metacritic critic score (0-100)"
+      - name: user_score
+        description: "Steam user score (0-10)"
+      - name: metacritic_tier
+        description: "Metacritic score tier (excellent/good/ok/poor/unrated)"
+      - name: user_score_tier
+        description: "User score tier (excellent/good/ok/poor/unrated)"
+      - name: sentiment_ratio
+        description: "Ratio of positive to total reviews (0-1)"
+      - name: review_count
+        description: "Total reviews (positive + negative)"
+      - name: positive_count
+        description: "Count of positive reviews"
+      - name: negative_count
+        description: "Count of negative reviews"
+      - name: recommendations
+        description: "Number of user recommendations"
+      - name: avg_playtime
+        description: "Average total playtime in minutes"
+      - name: revenue_estimate
+        description: "Estimated revenue proxy (midpoint owners * price)"
+      - name: engagement_tier
+        description: "Engagement tier (viral/popular/moderate/low/none)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['viral', 'popular', 'moderate', 'low', 'none']
+      - name: success_indicator
+        description: "Composite success indicator (blockbuster/strong/mixed/weak/unrated)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['blockbuster', 'strong', 'mixed', 'weak', 'unrated']
+      - name: platform_count
+        description: "Number of platforms supported (0-3 for Windows/Mac/Linux)"
+
+  - name: mart_genres_analytics
+    description: "Genre-level analytics — one row per genre with game count, averages, and popularity rank"
+    columns:
+      - name: genre
+        description: "Genre name"
+        tests:
+          - not_null
+      - name: game_count
+        description: "Number of games in this genre"
+      - name: avg_price
+        description: "Average price of games in this genre"
+      - name: avg_review_count
+        description: "Average review count per game in this genre"
+      - name: avg_playtime
+        description: "Average playtime for games in this genre"
+      - name: total_revenue_estimate
+        description: "Sum of estimated revenue for this genre"
+      - name: popularity_rank
+        description: "Rank by game count (1 = most popular)"
+
+  - name: mart_publishers_rankings
+    description: "Publisher rankings — one row per publisher, ranked by estimated revenue with market share"
+    columns:
+      - name: publisher
+        description: "Publisher name"
+        tests:
+          - not_null
+      - name: game_count
+        description: "Number of games published"
+      - name: avg_price
+        description: "Average price across published games"
+      - name: avg_metacritic_score
+        description: "Average metacritic score across published games"
+      - name: total_revenue_estimate
+        description: "Total estimated revenue across all published games"
+      - name: market_share_pct
+        description: "Publisher's share of total estimated market revenue (%)"
+      - name: revenue_rank
+        description: "Rank by estimated revenue (1 = highest)"
+      - name: quality_rank
+        description: "Rank by average metacritic score (1 = highest)"
+
+  - name: mart_engagement_segments
+    description: "Engagement segmentation — each game classified into engagement tier with descriptions and value categories"
+    columns:
+      - name: appid
+        description: "Unique Steam application ID"
+        tests:
+          - not_null
+          - unique
+      - name: game_name
+        description: "Game title"
+      - name: engagement_tier
+        description: "Engagement tier (viral/popular/moderate/low/none)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['viral', 'popular', 'moderate', 'low', 'none']
+      - name: segment_description
+        description: "Human-readable description of the engagement segment"
+      - name: segment_value_category
+        description: "Value category for the segment (high_value/mid_value/low_value)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['high_value', 'mid_value', 'low_value']
