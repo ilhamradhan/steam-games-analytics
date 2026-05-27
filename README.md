@@ -58,6 +58,8 @@ steam-games-analytics/
 
 ## Model lineage
 
+![dbt model DAG](media/Screenshot%202026-05-27%20120614.png)
+
 ```
 raw_steam_games (source)
   └── stg_games__base
@@ -95,6 +97,8 @@ dbt test   # 24/24 pass
 ```
 
 ## Dashboard
+
+Live at **[ilhamradhan.github.io/steam-games-analytics](https://ilhamradhan.github.io/steam-games-analytics/)**. To run locally:
 
 ```bash
 cd dashboard
