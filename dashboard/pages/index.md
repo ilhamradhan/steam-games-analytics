@@ -2,6 +2,10 @@
 
 A compact view of the Steam catalog: size, pricing, platform reach, and how quality signals distribute across 124k+ titles.
 
+<div style="margin: 1.25rem 0 2rem; padding: 1rem 1.1rem; border: 1px solid rgba(138, 173, 244, 0.22); border-radius: 12px; background: rgba(54, 58, 79, 0.5); color: #b8c0e0;">
+This overview is designed as a market scan. It emphasizes ownership scale, pricing structure, and top-level quality signals before drilling into genre, publisher, and engagement detail.
+</div>
+
 ```sql game_count
 select count(*) as total from steam_games.game_performance
 ```
@@ -141,6 +145,10 @@ order by platform_count
 ## Quality And Engagement Signals
 
 Success and engagement are both heuristic summaries here, but they still show how much of the catalog sits in the tail versus the breakout layer.
+
+<div style="margin: 1rem 0 1.5rem; padding: 0.95rem 1.05rem; border-left: 3px solid #c6a0f6; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
+<strong style="color: #cad3f5;">How to read this:</strong> <code>success_indicator</code> is driven by critic score and sentiment, while <code>engagement_tier</code> is a heuristic based on reviews, recommendations, and playtime. These are summary signals, not official Steam labels.
+</div>
 
 ```sql engagement_breakdown
 select engagement_tier, count(*) as game_count

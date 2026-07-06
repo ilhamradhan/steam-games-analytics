@@ -2,7 +2,9 @@
 
 Publisher tables can look clean while hiding concentration and attribution issues. The views below keep the ranking but add quality, attention, and market-share context.
 
-> Revenue and market share are directional metrics here. Co-published games can be counted under more than one publisher.
+<div style="margin: 1.1rem 0 1.75rem; padding: 1rem 1.05rem; border-left: 3px solid #f5a97f; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
+<strong style="color: #cad3f5;">How this is calculated:</strong> Estimated revenue is the midpoint of owner range multiplied by current listed price. Market share is publisher estimated revenue divided by total publisher estimated revenue. Both are directional because co-published games can appear under more than one publisher.
+</div>
 
 ```sql publisher_stats
 select
@@ -40,6 +42,8 @@ order by revenue_rank
 </DataTable>
 
 ## Revenue Concentration
+
+The revenue view shows who captures the largest share of the catalog's monetization proxy. It is best read as relative concentration, not audited publisher revenue.
 
 ```sql top_publishers
 select publisher, total_revenue_estimate

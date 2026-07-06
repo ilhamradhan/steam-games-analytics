@@ -2,7 +2,9 @@
 
 Genre size matters, but normalized performance matters more. A crowded genre is not automatically an efficient one.
 
-> Revenue is a proxy based on owner ranges and price, and genre totals can overcount because multi-genre games contribute to more than one bucket.
+<div style="margin: 1.1rem 0 1.75rem; padding: 1rem 1.05rem; border-left: 3px solid #8aadf4; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
+<strong style="color: #cad3f5;">How this is calculated:</strong> Estimated revenue is the midpoint of a game's owner range multiplied by its current listed price. Genre totals are directional because a multi-genre game contributes to every genre it belongs to.
+</div>
 
 ```sql genre_stats
 select
@@ -35,6 +37,8 @@ order by game_count desc
 
 ## Scale And Market Density
 
+This first cut shows where the catalog is crowded. The next section focuses on whether that scale turns into stronger monetization or attention density.
+
 <BarChart
     data={genre_stats}
     x=genre
@@ -46,6 +50,8 @@ order by game_count desc
 />
 
 ## Efficiency Versus Volume
+
+These comparisons are more useful than raw size alone because they normalize large genre buckets and surface where attention is denser.
 
 ```sql genre_efficiency
 select

@@ -2,6 +2,10 @@
 
 These tiers separate breakout games from the long tail. The useful question is not only where games land, but how much attention and value each segment captures.
 
+<div style="margin: 1.1rem 0 1.75rem; padding: 1rem 1.05rem; border-left: 3px solid #8bd5ca; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
+<strong style="color: #cad3f5;">How this is calculated:</strong> Engagement tiers are heuristic buckets based on review volume, recommendations, and playtime. They are useful for segmentation, but they are not an official Steam metric.
+</div>
+
 ```sql segment_summary
 with totals as (
     select
@@ -73,6 +77,10 @@ Review share moves much faster than game share. That makes the segment chart mor
 ## Segment Economics
 
 Higher tiers are not just louder. They also pull up sentiment, playtime, and monetization proxies.
+
+<div style="margin: 0.9rem 0 1.5rem; padding: 0.95rem 1.05rem; border: 1px solid rgba(166, 218, 149, 0.22); border-radius: 10px; background: rgba(54, 58, 79, 0.38); color: #b8c0e0;">
+Revenue on this page uses the same directional proxy as the publisher and genre views: owner-range midpoint times current listed price.
+</div>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
 
