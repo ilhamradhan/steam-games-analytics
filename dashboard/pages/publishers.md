@@ -2,9 +2,11 @@
 
 Publisher tables can look clean while hiding concentration and attribution issues. The views below keep the ranking but add quality, attention, and market-share context.
 
-<div style="margin: 1.1rem 0 1.75rem; padding: 1rem 1.05rem; border-left: 3px solid #f5a97f; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
-<strong style="color: #cad3f5;">How this is calculated:</strong> Estimated revenue is the midpoint of owner range multiplied by current listed price. Market share is publisher estimated revenue divided by total publisher estimated revenue. Both are directional because co-published games can appear under more than one publisher.
-</div>
+> **How this is calculated**
+>
+> Estimated revenue is the midpoint of owner range multiplied by current listed price.
+> Market share is publisher estimated revenue divided by total publisher estimated revenue.
+> Both are directional because co-published games can appear under more than one publisher.
 
 ```sql publisher_stats
 select

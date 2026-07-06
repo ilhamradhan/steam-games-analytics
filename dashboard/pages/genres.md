@@ -2,9 +2,10 @@
 
 Genre size matters, but normalized performance matters more. A crowded genre is not automatically an efficient one.
 
-<div style="margin: 1.1rem 0 1.75rem; padding: 1rem 1.05rem; border-left: 3px solid #8aadf4; border-radius: 10px; background: rgba(54, 58, 79, 0.46); color: #b8c0e0;">
-<strong style="color: #cad3f5;">How this is calculated:</strong> Estimated revenue is the midpoint of a game's owner range multiplied by its current listed price. Genre totals are directional because a multi-genre game contributes to every genre it belongs to.
-</div>
+> **How this is calculated**
+>
+> Estimated revenue is the midpoint of a game's owner range multiplied by its current listed price.
+> Genre totals are directional because a multi-genre game contributes to every genre it belongs to.
 
 ```sql genre_stats
 select
