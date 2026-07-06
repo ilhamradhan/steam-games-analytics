@@ -2,7 +2,7 @@
   "name": "my-evidence-project",
   "version": "0.0.1",
   "scripts": {
-    "build": "EVIDENCE_BUILD_DIR=./build/steam-games-analytics evidence build",
+    "build": "cross-env EVIDENCE_BUILD_DIR=./build/steam-games-analytics evidence build",
     "build:strict": "evidence build:strict",
     "dev": "evidence dev --open /",
     "test": "evidence build",
@@ -36,5 +36,8 @@
     "trim@<0.0.3": ">0.0.3",
     "sqlite3": "5.1.5",
     "axios": "^1.7.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
