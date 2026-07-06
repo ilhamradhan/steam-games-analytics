@@ -28,6 +28,7 @@ where revenue_rank <= 50
 order by revenue_rank
 ```
 
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(245, 169, 127, 0.15); border-radius: 16px; background: rgba(54, 58, 79, 0.28);">
 <DataTable data={publisher_stats} rows=25 title="Top 50 Publishers">
     <Column id=publisher title="Publisher" />
     <Column id=game_count title="Games" />
@@ -42,6 +43,7 @@ order by revenue_rank
     <Column id=revenue_rank title="Revenue Rank" />
     <Column id=quality_rank title="Quality Rank" />
 </DataTable>
+</div>
 
 ## Revenue Concentration
 
@@ -61,7 +63,7 @@ where revenue_rank <= 15
 order by market_share_pct desc
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
 
 <BarChart
     data={top_publishers}
@@ -103,6 +105,7 @@ order by total_revenue_estimate desc
 limit 100
 ```
 
+<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.2);">
 <ScatterPlot
     data={quality_volume}
     x=game_count
@@ -111,3 +114,4 @@ limit 100
     yAxisTitle="Avg User Score"
     title="Publisher Scale vs User Reception"
 />
+</div>

@@ -28,7 +28,7 @@ order by metacritic_score desc, review_count desc, recommendations desc
 limit 1
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; padding: 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.16); border-radius: 16px; background: rgba(54, 58, 79, 0.32);">
 
 <BigValue
     data={game_count}
@@ -88,6 +88,7 @@ order by
     end
 ```
 
+<div style="margin: 1.1rem 0 1.75rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.16); border-radius: 16px; background: rgba(54, 58, 79, 0.26);">
 <BarChart
     data={owner_band_mix}
     x=estimated_owners
@@ -96,6 +97,7 @@ order by
     yAxisTitle="Games"
     title="Catalog Distribution by Ownership Band"
 />
+</div>
 
 ```sql pricing_mix
 select
@@ -119,7 +121,7 @@ group by 1, platform_count
 order by platform_count
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
 
 <BarChart
     data={pricing_mix}
@@ -179,7 +181,7 @@ order by
     end
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
 
 <BarChart
     data={engagement_breakdown}

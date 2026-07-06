@@ -37,6 +37,7 @@ order by
     end
 ```
 
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(139, 213, 202, 0.15); border-radius: 16px; background: rgba(54, 58, 79, 0.28);">
 <DataTable data={segment_summary} title="Engagement Segment Summary">
     <Column id=engagement_tier title="Segment" />
     <Column id=game_count title="Games" />
@@ -48,12 +49,13 @@ order by
     <Column id=share_of_reviews_pct title="Share of Reviews (%)" />
     <Column id=total_revenue_estimate title="Est. Revenue" fmt=usd0 />
 </DataTable>
+</div>
 
 ## Where Attention Concentrates
 
 Review share moves much faster than game share. That makes the segment chart more informative than raw counts alone.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
 
 <BarChart
     data={segment_summary}
@@ -82,7 +84,7 @@ Higher tiers are not just louder. They also pull up sentiment, playtime, and mon
 > Revenue on this page uses the same directional proxy as the publisher and genre views:
 > owner-range midpoint times current listed price.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(166, 218, 149, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
 
 <BarChart
     data={segment_summary}
@@ -141,6 +143,7 @@ order by
     review_count desc
 ```
 
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
 <DataTable data={top_per_segment} rows=30 title="Top 5 Games Per Segment">
     <Column id=game_name title="Game Name" />
     <Column id=engagement_tier title="Segment" />
@@ -150,3 +153,4 @@ order by
     <Column id=recommendations title="Recommendations" />
     <Column id=avg_playtime title="Avg Playtime (min)" />
 </DataTable>
+</div>
