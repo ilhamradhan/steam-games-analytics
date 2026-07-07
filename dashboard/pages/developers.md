@@ -25,7 +25,7 @@ qualify revenue_rank <= 50
 order by revenue_rank
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 16px; background: rgba(54, 58, 79, 0.28);">
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
 <DataTable data={developer_stats} rows=25 title="Top 50 Developers">
     <Column id=developer title="Developer" />
     <Column id=game_count title="Games" />
@@ -60,7 +60,7 @@ order by total_reviews desc
 limit 20
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 
 <BarChart
     data={top_developers}
@@ -102,7 +102,7 @@ order by total_revenue_estimate desc
 limit 100
 ```
 
-<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.2);">
+<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 <ScatterPlot
     data={developer_quality}
     x=game_count

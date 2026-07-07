@@ -4,8 +4,10 @@ These tiers separate breakout games from the long tail. The useful question is n
 
 > **How this is calculated**
 >
-> Engagement tiers are heuristic buckets based on review volume, recommendations, and playtime.
-> They are useful for segmentation, but they are not an official Steam metric.
+> Engagement tiers are heuristic buckets.
+> `viral` requires recommendations > 1000, positive reviews > 500, and average playtime > 1000 minutes.
+> `popular` requires positive reviews > 100 and total reviews > 200.
+> `moderate` means at least 10 reviews, `low` means 1-9 reviews, and `none` means no review activity.
 
 ```sql segment_summary
 with totals as (
@@ -37,7 +39,7 @@ order by
     end
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(139, 213, 202, 0.15); border-radius: 16px; background: rgba(54, 58, 79, 0.28);">
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(139, 213, 202, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
 <DataTable data={segment_summary} title="Engagement Segment Summary">
     <Column id=engagement_tier title="Segment" />
     <Column id=game_count title="Games" />
@@ -55,7 +57,7 @@ order by
 
 Review share moves much faster than game share. That makes the segment chart more informative than raw counts alone.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 
 <BarChart
     data={segment_summary}
@@ -84,7 +86,7 @@ Higher tiers are not just louder. They also pull up sentiment, playtime, and mon
 > Revenue on this page uses the same directional proxy as the publisher and genre views:
 > owner-range midpoint times current listed price.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(166, 218, 149, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(166, 218, 149, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 
 <BarChart
     data={segment_summary}
@@ -143,7 +145,7 @@ order by
     review_count desc
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 <DataTable data={top_per_segment} rows=30 title="Top 5 Games Per Segment">
     <Column id=game_name title="Game Name" />
     <Column id=engagement_tier title="Segment" />

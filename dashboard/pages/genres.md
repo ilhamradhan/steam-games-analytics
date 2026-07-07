@@ -23,7 +23,7 @@ from steam_games.genre_analytics
 order by game_count desc
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 16px; background: rgba(54, 58, 79, 0.28);">
+<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
 <DataTable data={genre_stats} rows=20 title="Genre Statistics">
     <Column id=genre title="Genre" />
     <Column id=game_count title="Games" />
@@ -42,7 +42,7 @@ order by game_count desc
 
 This first cut shows where the catalog is crowded. The next section focuses on whether that scale turns into stronger monetization or attention density.
 
-<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.22);">
+<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 <BarChart
     data={genre_stats}
     x=genre
@@ -70,7 +70,7 @@ where game_count >= 25
 order by revenue_per_game desc
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.24);">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 
 <BarChart
     data={genre_efficiency}
@@ -94,7 +94,7 @@ order by revenue_per_game desc
 
 </div>
 
-<div style="margin: 0.5rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(245, 169, 127, 0.14); border-radius: 16px; background: rgba(54, 58, 79, 0.2);">
+<div style="margin: 0.5rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(245, 169, 127, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
 <ScatterPlot
     data={genre_efficiency}
     x=avg_price
