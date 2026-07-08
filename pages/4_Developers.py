@@ -87,5 +87,5 @@ fig = px.scatter(df_qs, x="game_count", y="avg_user_score",
                  size="total_revenue_estimate", hover_name="developer",
                  title="Developer Scale vs User Reception",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
-fig.update_layout(**PLOTLY_LAYOUT)
+fig.update_layout(**PLOTLY_LAYOUT, height=400)
 st.plotly_chart(fig, use_container_width=True)

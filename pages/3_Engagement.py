@@ -61,14 +61,14 @@ with c1:
     fig = px.bar(df, x="engagement_tier", y="share_of_games_pct",
                  title="Catalog Share by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 with c2:
     fig = px.bar(df, x="engagement_tier", y="share_of_reviews_pct",
                  title="Attention Share by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 # ── Segment Economics ──────────────────────────────────────
@@ -83,14 +83,14 @@ with c1:
     fig = px.bar(df, x="engagement_tier", y="avg_sentiment_ratio",
                  title="Avg Sentiment by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 with c2:
     fig = px.bar(df, x="engagement_tier", y="avg_playtime",
                  title="Avg Playtime by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 # ── Standout Games ─────────────────────────────────────────

@@ -117,7 +117,7 @@ df_owner = query(OWNER_BANDS)
 fig = px.bar(df_owner, x="estimated_owners", y="game_count",
              title="Catalog Distribution by Ownership Band",
              color_discrete_sequence=[CATPPUCCIN_PALETTE[0]])
-fig.update_layout(**PLOTLY_LAYOUT)
+fig.update_layout(**PLOTLY_LAYOUT, height=400)
 st.plotly_chart(fig, use_container_width=True)
 
 # Pricing / Platform side-by-side
@@ -129,14 +129,14 @@ with c1:
     fig = px.bar(df_price, x="pricing_model", y="game_count",
                  title="Free vs Paid Catalog Split",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[1]])
-    fig.update_layout(**PLOTLY_LAYOUT)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400)
     st.plotly_chart(fig, use_container_width=True)
 
 with c2:
     fig = px.bar(df_plat, x="platform_reach", y="game_count",
                  title="Platform Support Breadth",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
-    fig.update_layout(**PLOTLY_LAYOUT)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400)
     st.plotly_chart(fig, use_container_width=True)
 
 # ── QUALITY & ENGAGEMENT ──────────────────────────────────
@@ -154,7 +154,7 @@ with col1:
     fig = px.bar(df, x="engagement_tier", y="game_count",
                  title="Games by Engagement Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 with col2:
@@ -162,7 +162,7 @@ with col2:
     fig = px.bar(df, x="success_indicator", y="game_count",
                  title="Games by Success Indicator",
                  color="success_indicator", color_discrete_map=SUCCESS_PALETTE)
-    fig.update_layout(**PLOTLY_LAYOUT, showlegend=False)
+    fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
 caveat(

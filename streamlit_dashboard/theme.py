@@ -41,7 +41,6 @@ PLOTLY_LAYOUT = dict(
     xaxis=dict(gridcolor="rgba(138,173,244,0.1)", color="#aeb8d6"),
     yaxis=dict(gridcolor="rgba(138,173,244,0.1)", color="#aeb8d6"),
     margin=dict(l=10, r=20, t=40, b=10),
-    height=400,
     hoverlabel=dict(bgcolor=MACCHIATO_OVERLAY, font_size=12),
 )
 

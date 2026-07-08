@@ -89,5 +89,5 @@ with c2:
 fig = px.scatter(ef, x="avg_price", y="reviews_per_game", text="genre",
                  title="Genre Price vs Attention Density")
 fig.update_traces(textposition="top center", marker=dict(size=10, color=CATPPUCCIN_PALETTE[4]))
-fig.update_layout(**PLOTLY_LAYOUT)
+fig.update_layout(**PLOTLY_LAYOUT, height=400)
 st.plotly_chart(fig, use_container_width=True)
