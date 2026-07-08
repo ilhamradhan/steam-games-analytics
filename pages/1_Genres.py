@@ -12,11 +12,13 @@ from streamlit_dashboard.components import (
     revenue_caveat,
     section_header,
     section_lead,
+    setup_sidebar,
 )
 from streamlit_dashboard.theme import CATPPUCCIN_PALETTE, PLOTLY_LAYOUT
 
 st.set_page_config(page_title="Genres", page_icon="🎬", layout="wide")
 inject_global_styles()
+setup_sidebar()
 
 page_header("Market Slice", "Genre Analytics",
     "Genre size matters, but normalized performance matters more. "

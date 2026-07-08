@@ -1,6 +1,51 @@
 """Reusable Streamlit UI helpers and shared styles."""
 import streamlit as st
 
+try:
+    import humanize as _humanize
+    _HAS_HUMANIZE = True
+except ImportError:
+    _HAS_HUMANIZE = False
+
+
+def fmt_count(n: int) -> str:
+    """Format large numbers: 124146 -> 124K."""
+    if not _HAS_HUMANIZE:
+        return f"{n:,}"
+    return _humanize.intword(n, format="%.1f")
+
+
+def fmt_usd(n: float) -> str:
+    """Format USD amounts: 1234567 -> $1.2 million."""
+    if not _HAS_HUMANIZE:
+        return f"${n:,.0f}"
+    return "$" + _humanize.intword(int(n), format="%.1f")
+
+
+def setup_sidebar():
+    """Shared sidebar branding across all pages."""
+    with st.sidebar:
+        st.markdown(
+            """
+            <div style="margin-bottom:1rem">
+            <div style="font-size:1.05rem;font-weight:700;color:#f4f6ff;letter-spacing:-0.01em">
+            🎮 Steam Games Analytics</div>
+            <div style="font-size:0.72rem;color:#8aadf4;margin-top:0.2rem">
+            Catppuccin Macchiato + Dracula</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown("---")
+        st.caption(
+            "📊 **Overview** — Catalog shape, pricing, platform reach\n\n"
+            "🎬 **Genres** — Genre density, efficiency, and revenue per game\n\n"
+            "🏢 **Publishers** — Rankings, concentration, and quality vs scale\n\n"
+            "👥 **Engagement** — Tier segmentation and audience attention\n\n"
+            "🎮 **Developers** — Studio rankings and scale vs reception\n\n"
+            "🏷️ **Categories** — Feature distribution and commercial density"
+        )
+
 
 def inject_global_styles():
     st.markdown(

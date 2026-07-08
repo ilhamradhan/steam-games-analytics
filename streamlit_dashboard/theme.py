@@ -42,4 +42,15 @@ PLOTLY_LAYOUT = dict(
     yaxis=dict(gridcolor="rgba(138,173,244,0.1)", color="#aeb8d6"),
     margin=dict(l=10, r=20, t=40, b=10),
     height=400,
+    hoverlabel=dict(bgcolor=MACCHIATO_OVERLAY, font_size=12),
+)
+
+PLOTLY_LAYOUT_USD_X = dict(
+    **PLOTLY_LAYOUT,
+    xaxis=dict(gridcolor="rgba(138,173,244,0.1)", color="#aeb8d6", tickprefix="$", tickformat=",.0f"),
+)
+
+PLOTLY_LAYOUT_USD_Y = dict(
+    **PLOTLY_LAYOUT,
+    yaxis=dict(gridcolor="rgba(138,173,244,0.1)", color="#aeb8d6", tickprefix="$", tickformat=",.0f"),
 )

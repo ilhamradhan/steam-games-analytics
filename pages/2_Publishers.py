@@ -17,11 +17,13 @@ from streamlit_dashboard.components import (
     revenue_caveat,
     section_header,
     section_lead,
+    setup_sidebar,
 )
 from streamlit_dashboard.theme import CATPPUCCIN_PALETTE, PLOTLY_LAYOUT
 
 st.set_page_config(page_title="Publishers", page_icon="🏢", layout="wide")
 inject_global_styles()
+setup_sidebar()
 
 page_header("Company View", "Publisher Rankings",
     "Publisher tables can look clean while hiding concentration and attribution issues. "

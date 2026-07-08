@@ -17,11 +17,13 @@ from streamlit_dashboard.components import (
     revenue_caveat,
     section_header,
     section_lead,
+    setup_sidebar,
 )
 from streamlit_dashboard.theme import CATPPUCCIN_PALETTE, PLOTLY_LAYOUT
 
 st.set_page_config(page_title="Developers", page_icon="🎮", layout="wide")
 inject_global_styles()
+setup_sidebar()
 
 page_header("Studio View", "Developer Analytics",
     "Developer performance is often clearer than publisher performance because "

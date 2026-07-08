@@ -19,6 +19,7 @@ from streamlit_dashboard.components import (
     page_header,
     section_header,
     section_lead,
+    setup_sidebar,
 )
 from streamlit_dashboard.theme import (
     CATPPUCCIN_PALETTE,
@@ -29,6 +30,7 @@ from streamlit_dashboard.theme import (
 
 st.set_page_config(page_title="Steam Games Analytics", page_icon="🎮", layout="wide")
 inject_global_styles()
+setup_sidebar()
 
 # ── HERO ───────────────────────────────────────────────────
 

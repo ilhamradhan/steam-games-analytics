@@ -12,11 +12,13 @@ from streamlit_dashboard.components import (
     page_header,
     section_header,
     section_lead,
+    setup_sidebar,
 )
 from streamlit_dashboard.theme import CATPPUCCIN_PALETTE, PLOTLY_LAYOUT, TIER_PALETTE
 
 st.set_page_config(page_title="Engagement", page_icon="👥", layout="wide")
 inject_global_styles()
+setup_sidebar()
 
 page_header("Audience View", "Engagement Segments",
     "These tiers separate breakout games from the long tail. "
