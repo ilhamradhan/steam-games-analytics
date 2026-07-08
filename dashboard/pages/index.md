@@ -1,9 +1,26 @@
-# Steam Games Analytics
+<div class="homepage-hero">
+  <div class="homepage-hero-grid">
+    <div class="homepage-hero-copy">
+      <div class="page-kicker">Steam Marketplace Lens</div>
+      <h1>Steam Games Analytics</h1>
 
-A compact view of the Steam catalog: size, pricing, platform reach, and how quality signals distribute across 124k+ titles.
+      <p class="page-lead">A compact view of the Steam catalog: size, pricing, platform reach, and how quality signals distribute across 124k+ titles.</p>
 
-> This overview is designed as a market scan. It emphasizes ownership scale, pricing structure,
-> and top-level quality signals before drilling into genre, publisher, developer, and engagement detail.
+      <p class="section-lead">This homepage is built to answer the first-order questions first: how large the market is, how concentrated ownership looks, how free and paid titles split, and how much of the catalog sits in the breakout layer rather than the long tail.</p>
+    </div>
+
+    <div class="homepage-side-stack">
+      <div class="homepage-side-card">
+        <strong>Coverage</strong>
+        <p>Tracks the catalog before drilling into genres, publishers, developers, categories, and audience behavior.</p>
+      </div>
+      <div class="homepage-side-card">
+        <strong>Read Order</strong>
+        <p>Start here for market shape, then move into company, studio, category, and audience views for more specific cuts.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 ```sql game_count
 select count(*) as total from steam_games.game_performance
@@ -28,40 +45,51 @@ order by metacritic_score desc, review_count desc, recommendations desc
 limit 1
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; padding: 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.16); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
+<div class="panel panel-soft">
+<div class="section-kicker">Topline Snapshot</div>
+<div class="stats-grid">
 
+<div class="stat-card">
 <BigValue
     data={game_count}
     value=total
     title="Games Tracked"
 />
+</div>
 
+<div class="stat-card">
 <BigValue
     data={avg_price}
     value=avg_price
     title="Average Paid Price"
     subtitle="USD"
 />
+</div>
 
+<div class="stat-card">
 <BigValue
     data={genre_count}
     value=genres
     title="Genres"
     subtitle="Represented"
 />
+</div>
 
+<div class="stat-card">
 <BigValue
     data={featured_title}
     value=game_name
     title="Featured Title"
     subtitle="Top critic score with review depth"
 />
+</div>
 
+</div>
 </div>
 
 ## Market Snapshot
 
-The catalog is heavily skewed toward long-tail titles, so the most useful top-level cuts are ownership scale, pricing model, and platform breadth.
+<p class="section-lead">The catalog is heavily skewed toward long-tail titles, so the most useful top-level cuts are ownership scale, pricing model, and platform breadth.</p>
 
 ```sql owner_band_mix
 select
@@ -88,7 +116,8 @@ order by
     end
 ```
 
-<div style="margin: 1.1rem 0 1.75rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.16); border-radius: 5px; background: rgba(36, 39, 58, 0.12);">
+<div class="panel panel-soft">
+<div class="section-kicker">Ownership Distribution</div>
 <BarChart
     data={owner_band_mix}
     x=estimated_owners
@@ -121,7 +150,9 @@ group by 1, platform_count
 order by platform_count
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-cool panel-soft">
+<div class="section-kicker">Catalog Structure</div>
+<div class="panel-grid">
 
 <BarChart
     data={pricing_mix}
@@ -142,10 +173,11 @@ order by platform_count
 />
 
 </div>
+</div>
 
 ## Quality And Engagement Signals
 
-Success and engagement are both heuristic summaries here, but they still show how much of the catalog sits in the tail versus the breakout layer.
+<p class="section-lead">Success and engagement are both heuristic summaries here, but they still show how much of the catalog sits in the tail versus the breakout layer.</p>
 
 > **How to read this**
 >
@@ -181,7 +213,9 @@ order by
     end
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-accent panel-soft">
+<div class="section-kicker">Breakout Layer</div>
+<div class="panel-grid">
 
 <BarChart
     data={engagement_breakdown}
@@ -201,4 +235,5 @@ order by
     title="Games by Success Indicator"
 />
 
+</div>
 </div>

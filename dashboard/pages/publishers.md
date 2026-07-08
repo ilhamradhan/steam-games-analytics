@@ -1,6 +1,9 @@
-# Publisher Rankings
+<div class="page-header">
+  <div class="page-kicker">Company View</div>
+  <h1>Publisher Rankings</h1>
 
-Publisher tables can look clean while hiding concentration and attribution issues. The views below keep the ranking but add quality, attention, and market-share context.
+  <p class="page-lead">Publisher tables can look clean while hiding concentration and attribution issues. The views below keep the ranking but add quality, attention, and market-share context.</p>
+</div>
 
 > **How this is calculated**
 >
@@ -28,7 +31,8 @@ where revenue_rank <= 50
 order by revenue_rank
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(245, 169, 127, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
+<div class="panel panel-warm">
+<div class="section-kicker">Publisher Table</div>
 <DataTable data={publisher_stats} rows=25 title="Top 50 Publishers">
     <Column id=publisher title="Publisher" />
     <Column id=game_count title="Games" />
@@ -47,7 +51,7 @@ order by revenue_rank
 
 ## Revenue Concentration
 
-The revenue view shows who captures the largest share of the catalog's monetization proxy. It is best read as relative concentration, not audited publisher revenue.
+<p class="section-lead">The revenue view shows who captures the largest share of the catalog's monetization proxy. It is best read as relative concentration, not audited publisher revenue.</p>
 
 ```sql top_publishers
 select publisher, total_revenue_estimate
@@ -63,7 +67,9 @@ where revenue_rank <= 15
 order by market_share_pct desc
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-cool panel-soft">
+<div class="section-kicker">Concentration View</div>
+<div class="panel-grid">
 
 <BarChart
     data={top_publishers}
@@ -86,10 +92,11 @@ order by market_share_pct desc
 />
 
 </div>
+</div>
 
 ## Quality Versus Scale
 
-The useful comparison is broad, not just a handpicked top slice. This view keeps only publishers with enough catalog depth to be comparable.
+<p class="section-lead">The useful comparison is broad, not just a handpicked top slice. This view keeps only publishers with enough catalog depth to be comparable.</p>
 
 ```sql quality_volume
 select
@@ -105,7 +112,8 @@ order by total_revenue_estimate desc
 limit 100
 ```
 
-<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-accent panel-soft">
+<div class="section-kicker">Reception Versus Scale</div>
 <ScatterPlot
     data={quality_volume}
     x=game_count

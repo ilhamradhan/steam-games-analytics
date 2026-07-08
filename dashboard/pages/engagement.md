@@ -1,6 +1,9 @@
-# Engagement Segments
+<div class="page-header">
+  <div class="page-kicker">Audience View</div>
+  <h1>Engagement Segments</h1>
 
-These tiers separate breakout games from the long tail. The useful question is not only where games land, but how much attention and value each segment captures.
+  <p class="page-lead">These tiers separate breakout games from the long tail. The useful question is not only where games land, but how much attention and value each segment captures.</p>
+</div>
 
 > **How this is calculated**
 >
@@ -39,7 +42,8 @@ order by
     end
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(139, 213, 202, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
+<div class="panel panel-cool">
+<div class="section-kicker">Segment Table</div>
 <DataTable data={segment_summary} title="Engagement Segment Summary">
     <Column id=engagement_tier title="Segment" />
     <Column id=game_count title="Games" />
@@ -55,9 +59,11 @@ order by
 
 ## Where Attention Concentrates
 
-Review share moves much faster than game share. That makes the segment chart more informative than raw counts alone.
+<p class="section-lead">Review share moves much faster than game share. That makes the segment chart more informative than raw counts alone.</p>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-cool panel-soft">
+<div class="section-kicker">Attention Concentration</div>
+<div class="panel-grid">
 
 <BarChart
     data={segment_summary}
@@ -78,15 +84,18 @@ Review share moves much faster than game share. That makes the segment chart mor
 />
 
 </div>
+</div>
 
 ## Segment Economics
 
-Higher tiers are not just louder. They also pull up sentiment, playtime, and monetization proxies.
+<p class="section-lead">Higher tiers are not just louder. They also pull up sentiment, playtime, and monetization proxies.</p>
 
 > Revenue on this page uses the same directional proxy as the publisher and genre views:
 > owner-range midpoint times current listed price.
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(166, 218, 149, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-soft">
+<div class="section-kicker">Segment Economics</div>
+<div class="panel-grid">
 
 <BarChart
     data={segment_summary}
@@ -106,6 +115,7 @@ Higher tiers are not just louder. They also pull up sentiment, playtime, and mon
     title="Average Playtime by Tier"
 />
 
+</div>
 </div>
 
 ## Standout Games Within Each Tier

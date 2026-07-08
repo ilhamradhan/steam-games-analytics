@@ -1,6 +1,8 @@
-# Categories And Tags
-
-This view uses Steam category-style metadata such as single-player, multi-player, co-op, controller support, and achievements. It is narrower than genre analysis and better for understanding product shape.
+<div class="page-header">
+  <div class="page-kicker">Product Shape</div>
+  <h1>Categories And Tags</h1>
+  <p class="page-lead">This view uses Steam category-style metadata such as single-player, multi-player, co-op, controller support, and achievements. It is narrower than genre analysis and better for understanding product shape.</p>
+</div>
 
 > **How this is calculated**
 >
@@ -22,7 +24,8 @@ from steam_games.category_analytics
 order by game_count desc
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
+<div class="panel panel-soft">
+<div class="section-kicker">Category Table</div>
 <DataTable data={category_stats} rows=20 title="Category Statistics">
     <Column id=category title="Category" />
     <Column id=game_count title="Games" />
@@ -38,7 +41,7 @@ order by game_count desc
 
 ## Product Shape Distribution
 
-These counts show which product features dominate the Steam catalog. They are useful for understanding how common multiplayer, controller support, or achievement-heavy packaging really is.
+<p class="section-lead">These counts show which product features dominate the Steam catalog. They are useful for understanding how common multiplayer, controller support, or achievement-heavy packaging really is.</p>
 
 ```sql category_scale
 select category, game_count
@@ -47,7 +50,8 @@ order by game_count desc
 limit 20
 ```
 
-<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-cool panel-soft">
+<div class="section-kicker">Feature Distribution</div>
 <BarChart
     data={category_scale}
     x=category
@@ -61,7 +65,7 @@ limit 20
 
 ## Commercial And Attention Density
 
-The more interesting question is whether those categories also pull higher revenue and stronger review density per game.
+<p class="section-lead">The more interesting question is whether those categories also pull higher revenue and stronger review density per game.</p>
 
 ```sql category_efficiency
 select
@@ -75,7 +79,9 @@ where game_count >= 25
 order by revenue_per_game desc
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-accent panel-soft">
+<div class="section-kicker">Commercial Density</div>
+<div class="panel-grid">
 
 <BarChart
     data={category_efficiency}
@@ -98,8 +104,10 @@ order by revenue_per_game desc
 />
 
 </div>
+</div>
 
-<div style="margin: 0.5rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(245, 169, 127, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-warm panel-soft">
+<div class="section-kicker">Price Versus Attention</div>
 <ScatterPlot
     data={category_efficiency}
     x=avg_price

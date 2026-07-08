@@ -1,6 +1,8 @@
-# Developer Analytics
-
-Developer performance is often clearer than publisher performance because the creative footprint stays closer to the game itself. This page focuses on scale, player response, and concentration across studios.
+<div class="page-header">
+  <div class="page-kicker">Studio View</div>
+  <h1>Developer Analytics</h1>
+  <p class="page-lead">Developer performance is often clearer than publisher performance because the creative footprint stays closer to the game itself. This page focuses on scale, player response, and concentration across studios.</p>
+</div>
 
 > **How this is calculated**
 >
@@ -25,7 +27,8 @@ qualify revenue_rank <= 50
 order by revenue_rank
 ```
 
-<div style="margin: 1.25rem 0 2rem; padding: 1.15rem 1.2rem 1.25rem; border: 1px solid rgba(138, 173, 244, 0.15); border-radius: 5px; background: rgba(36, 39, 58, 0.14);">
+<div class="panel panel-soft">
+<div class="section-kicker">Developer Table</div>
 <DataTable data={developer_stats} rows=25 title="Top 50 Developers">
     <Column id=developer title="Developer" />
     <Column id=game_count title="Games" />
@@ -42,7 +45,7 @@ order by revenue_rank
 
 ## Revenue Leaders
 
-The revenue view shows which studios anchor the catalog's largest breakout games. It works best as a relative ranking, not as audited studio revenue.
+<p class="section-lead">The revenue view shows which studios anchor the catalog's largest breakout games. It works best as a relative ranking, not as audited studio revenue.</p>
 
 ```sql top_developers
 select developer, total_revenue_estimate
@@ -60,7 +63,9 @@ order by total_reviews desc
 limit 20
 ```
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin: 1.5rem 0 2rem; padding: 1.1rem 1.2rem 1.25rem; border: 1px solid rgba(145, 215, 227, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-cool panel-soft">
+<div class="section-kicker">Breakout Studios</div>
+<div class="panel-grid">
 
 <BarChart
     data={top_developers}
@@ -83,10 +88,11 @@ limit 20
 />
 
 </div>
+</div>
 
 ## Quality Versus Scale
 
-This comparison highlights whether larger studios also maintain stronger player reception, or whether quality clusters around smaller catalogs.
+<p class="section-lead">This comparison highlights whether larger studios also maintain stronger player reception, or whether quality clusters around smaller catalogs.</p>
 
 ```sql developer_quality
 select
@@ -102,7 +108,8 @@ order by total_revenue_estimate desc
 limit 100
 ```
 
-<div style="margin: 1rem 0 1.85rem; padding: 1.05rem 1.15rem 1.2rem; border: 1px solid rgba(198, 160, 246, 0.14); border-radius: 5px; background: rgba(36, 39, 58, 0.1);">
+<div class="panel panel-accent panel-soft">
+<div class="section-kicker">Reception Versus Scale</div>
 <ScatterPlot
     data={developer_quality}
     x=game_count
