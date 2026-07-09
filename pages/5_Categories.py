@@ -33,7 +33,7 @@ methodology_note("this",
 
 df = query(CATEGORY_STATS)
 st.dataframe(
-    df, use_container_width=True, hide_index=True,
+    df, width="stretch", hide_index=True,
     column_config={
         "category": "Category", "game_count": "Games",
         "avg_price": st.column_config.NumberColumn("Avg Price", format="$%.2f"),
@@ -52,12 +52,12 @@ section_lead(
     "how common multiplayer, controller support, or achievement-heavy packaging really is."
 )
 
-df_scale = query(CATEGORY_SCALE)
+df_scale = query(CATEGORY_SCALE).sort_values("game_count", ascending=False)
 fig = px.bar(df_scale, x="game_count", y="category", orientation="h",
              title="Top Categories by Game Count",
              color_discrete_sequence=[CATPPUCCIN_PALETTE[1]])
 fig.update_layout(**PLOTLY_LAYOUT, height=550)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 # ── Commercial Density ─────────────────────────────────────
 
@@ -74,17 +74,17 @@ with c1:
                  title="Revenue per Game by Category",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(ef, x="reviews_per_game", y="category", orientation="h",
                  title="Reviews per Game by Category",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[3]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 fig = px.scatter(ef, x="avg_price", y="reviews_per_game", text="category",
                  title="Category Price vs Attention Density")
 fig.update_traces(textposition="top center", marker=dict(size=10, color=CATPPUCCIN_PALETTE[4]))
 fig.update_layout(**PLOTLY_LAYOUT, height=400)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")

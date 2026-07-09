@@ -31,9 +31,9 @@ methodology_note("this",
 
 # ── Table ──────────────────────────────────────────────────
 
-df = query(GENRE_STATS)
+df = query(GENRE_STATS).sort_values("game_count", ascending=False)
 st.dataframe(
-    df, use_container_width=True, hide_index=True,
+    df, width="stretch", hide_index=True,
     column_config={
         "genre": "Genre", "game_count": "Games",
         "avg_price": st.column_config.NumberColumn("Avg Price", format="$%.2f"),
@@ -59,7 +59,7 @@ fig = px.bar(df, x="game_count", y="genre", orientation="h",
              title="Games per Genre",
              color_discrete_sequence=[CATPPUCCIN_PALETTE[1]])
 fig.update_layout(**PLOTLY_LAYOUT, height=600)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")
 
 # ── Efficiency ─────────────────────────────────────────────
 
@@ -77,17 +77,17 @@ with c1:
                  title="Revenue per Game by Genre",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
     fig.update_layout(**PLOTLY_LAYOUT, height=600)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(ef, x="reviews_per_game", y="genre", orientation="h",
                  title="Reviews per Game by Genre",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[3]])
     fig.update_layout(**PLOTLY_LAYOUT, height=600)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 fig = px.scatter(ef, x="avg_price", y="reviews_per_game", text="genre",
                  title="Genre Price vs Attention Density")
 fig.update_traces(textposition="top center", marker=dict(size=10, color=CATPPUCCIN_PALETTE[4]))
 fig.update_layout(**PLOTLY_LAYOUT, height=400)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")

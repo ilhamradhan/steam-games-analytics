@@ -21,11 +21,11 @@ An [Evidence dashboard](dashboard/) sits on top of the marts with charts for gen
 ## Quick start
 
 ```bash
-pip install -r requirements.txt
+uv sync
 python load_steam_data.py
 cp profiles.yml.example profiles.yml
-dbt run
-dbt test
+uv run dbt run
+uv run dbt test
 ```
 
 ## Data source
@@ -101,18 +101,17 @@ dbt test   # 24/24 pass
 Live at **[ilhamradhan.github.io/steam-games-analytics](https://ilhamradhan.github.io/steam-games-analytics/)**. To run locally:
 
 ```bash
-cd dashboard
-npm install
-npm run sources
-npm run dev
+uv run streamlit run streamlit_app.py
 ```
 
-Opens at `localhost:3000` with four pages:
+Opens at `localhost:8501` with six pages:
 
-- Overview. KPIs (games tracked, avg price, genres), engagement tier breakdown, success indicator distribution.
+- Overview. Attention concentration, viral-tier review/revenue share, ownership, pricing, platform support, and quality labels.
 - Genres. Data table and bar charts for game counts and revenue by genre.
 - Publishers. Ranked by estimated revenue, top 20 revenue chart, quality vs volume scatter plot.
 - Engagement. Segment summaries, review totals per segment, top games per tier.
+- Developers. Studio rankings, revenue/review leaders, and quality vs scale.
+- Categories. Product feature distribution and commercial density.
 
 Deploy to GitHub Pages or any static host with `npm run build`.
 

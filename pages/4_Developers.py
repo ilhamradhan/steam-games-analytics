@@ -38,7 +38,7 @@ methodology_note("this",
 
 df = query(DEVELOPER_STATS)
 st.dataframe(
-    df, use_container_width=True, hide_index=True,
+    df, width="stretch", hide_index=True,
     column_config={
         "developer": "Developer", "game_count": "Games",
         "avg_price": st.column_config.NumberColumn("Avg Price", format="$%.2f"),
@@ -56,8 +56,8 @@ revenue_caveat()
 
 section_header("Breakout Studios")
 
-df_rev = query(DEV_REVENUE_LEADERS)
-df_rvw = query(DEV_REVIEW_LEADERS)
+df_rev = query(DEV_REVENUE_LEADERS).sort_values("total_revenue_estimate", ascending=False)
+df_rvw = query(DEV_REVIEW_LEADERS).sort_values("total_reviews", ascending=False)
 
 c1, c2 = st.columns(2)
 with c1:
@@ -65,14 +65,14 @@ with c1:
                  title="Top 20 by Revenue",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[0]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(df_rvw, x="total_reviews", y="developer", orientation="h",
                  title="Top 20 by Reviews",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[1]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 # ── Quality vs Scale ───────────────────────────────────────
 
@@ -88,4 +88,4 @@ fig = px.scatter(df_qs, x="game_count", y="avg_user_score",
                  title="Developer Scale vs User Reception",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
 fig.update_layout(**PLOTLY_LAYOUT, height=400)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")

@@ -38,7 +38,7 @@ methodology_note("this",
 
 df = query(PUBLISHER_RANKINGS)
 st.dataframe(
-    df, use_container_width=True, hide_index=True,
+    df, width="stretch", hide_index=True,
     column_config={
         "publisher": "Publisher", "game_count": "Games",
         "avg_price": st.column_config.NumberColumn("Avg Price", format="$%.2f"),
@@ -61,8 +61,8 @@ section_lead(
     "Best read as relative concentration, not audited publisher revenue."
 )
 
-df_rev = query(PUBLISHER_TOP_REVENUE)
-df_ms  = query(PUBLISHER_MARKET_SHARE)
+df_rev = query(PUBLISHER_TOP_REVENUE).sort_values("total_revenue_estimate", ascending=False)
+df_ms  = query(PUBLISHER_MARKET_SHARE).sort_values("market_share_pct", ascending=False)
 
 c1, c2 = st.columns(2)
 with c1:
@@ -70,14 +70,14 @@ with c1:
                  title="Top 20 by Revenue",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[0]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(df_ms, x="market_share_pct", y="publisher", orientation="h",
                  title="Top 15 by Market Share",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[1]])
     fig.update_layout(**PLOTLY_LAYOUT, height=550)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 # ── Scale vs Quality ───────────────────────────────────────
 
@@ -92,4 +92,4 @@ fig = px.scatter(df_qv, x="game_count", y="avg_user_score",
                  title="Publisher Scale vs User Reception",
                  color_discrete_sequence=[CATPPUCCIN_PALETTE[2]])
 fig.update_layout(**PLOTLY_LAYOUT, height=400)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width="stretch")

@@ -10,6 +10,35 @@ OVERVIEW_KPIS = """
     from dev_marts.mart_games_performance
 """
 
+MARKET_CONCENTRATION = """
+    with totals as (
+        select
+            count(*) as total_games,
+            sum(review_count) as total_reviews,
+            sum(revenue_estimate) as total_revenue,
+            median(review_count) as median_reviews
+        from dev_marts.mart_games_performance
+    ),
+    viral as (
+        select
+            count(*) as viral_games,
+            sum(review_count) as viral_reviews,
+            sum(revenue_estimate) as viral_revenue
+        from dev_marts.mart_games_performance
+        where engagement_tier = 'viral'
+    )
+    select
+        t.total_games,
+        v.viral_games,
+        round(v.viral_games * 100.0 / nullif(t.total_games, 0), 2) as viral_game_share_pct,
+        round(v.viral_reviews * 100.0 / nullif(t.total_reviews, 0), 2) as viral_review_share_pct,
+        v.viral_revenue,
+        round(v.viral_revenue * 100.0 / nullif(t.total_revenue, 0), 2) as viral_revenue_share_pct,
+        t.median_reviews
+    from totals t
+    cross join viral v
+"""
+
 OWNER_BANDS = """
     select
         estimated_owners,
@@ -51,6 +80,24 @@ PLATFORM_MIX = """
     order by platform_count
 """
 
+PLATFORM_COMBOS = """
+    select
+        case
+            when windows and mac and linux then 'Windows + macOS + Linux'
+            when windows and mac then 'Windows + macOS'
+            when windows and linux then 'Windows + Linux'
+            when mac and linux then 'macOS + Linux'
+            when windows then 'Windows only'
+            when mac then 'macOS only'
+            when linux then 'Linux only'
+            else 'Unknown'
+        end as os_support,
+        count(*) as game_count
+    from dev_marts.mart_games_performance
+    group by 1
+    order by game_count desc
+"""
+
 ENGAGEMENT_BREAKDOWN = """
     select engagement_tier, count(*) as game_count
     from dev_marts.mart_games_performance
@@ -71,6 +118,15 @@ SUCCESS_BREAKDOWN = """
             when 'blockbuster' then 1 when 'strong' then 2
             when 'mixed' then 3 when 'weak' then 4 when 'unrated' then 5
         end
+"""
+
+METACRITIC_COVERAGE = """
+    select
+        count(*) as total_games,
+        sum(case when metacritic_score > 0 then 1 else 0 end) as rated_games,
+        round(sum(case when metacritic_score > 0 then 1 else 0 end) * 100.0 / count(*), 2) as rated_pct,
+        round(sum(case when metacritic_score <= 0 then 1 else 0 end) * 100.0 / count(*), 2) as unrated_pct
+    from dev_marts.mart_games_performance
 """
 
 FEATURED_TITLE = """

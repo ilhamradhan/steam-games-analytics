@@ -36,7 +36,7 @@ methodology_note("this",
 
 df = query(ENGAGEMENT_SEGMENTS)
 st.dataframe(
-    df, use_container_width=True, hide_index=True,
+    df, width="stretch", hide_index=True,
     column_config={
         "engagement_tier": "Segment", "game_count": "Games",
         "share_of_games_pct": st.column_config.NumberColumn("Share of Games", format="%.1f%%"),
@@ -62,14 +62,14 @@ with c1:
                  title="Catalog Share by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
     fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(df, x="engagement_tier", y="share_of_reviews_pct",
                  title="Attention Share by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
     fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 # ── Segment Economics ──────────────────────────────────────
 
@@ -84,14 +84,14 @@ with c1:
                  title="Avg Sentiment by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
     fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 with c2:
     fig = px.bar(df, x="engagement_tier", y="avg_playtime",
                  title="Avg Playtime by Tier",
                  color="engagement_tier", color_discrete_map=TIER_PALETTE)
     fig.update_layout(**PLOTLY_LAYOUT, height=400, showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 # ── Standout Games ─────────────────────────────────────────
 
@@ -99,7 +99,7 @@ section_header("Standout Games Within Each Tier")
 
 df_top = query(TOP_GAMES_PER_SEGMENT)
 st.dataframe(
-    df_top, use_container_width=True, hide_index=True,
+    df_top, width="stretch", hide_index=True,
     column_config={
         "game_name": "Game", "engagement_tier": "Segment",
         "review_count": "Reviews",

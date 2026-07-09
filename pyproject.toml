@@ -1,0 +1,19 @@
+[project]
+name = "steam-games-analytics"
+version = "0.1.0"
+description = "Analytics pipeline and Streamlit dashboard for Steam games data."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt-core>=1.5.0,<2.0.0",
+    "dbt-duckdb>=1.5.0",
+    "pandas>=2.0.0",
+    "pyarrow>=12.0.0",
+    "streamlit>=1.40.0",
+    "plotly>=5.0.0",
+    "duckdb>=1.0.0",
+    "humanize>=4.0.0",
+]
+
+[tool.uv]
+package = false

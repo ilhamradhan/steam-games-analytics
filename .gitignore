@@ -6,6 +6,7 @@ dbt_packages/
 *.parquet
 *.csv
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
