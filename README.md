@@ -101,7 +101,7 @@ dbt test   # 24/24 pass
 Live at **[ilhamradhan.github.io/steam-games-analytics](https://ilhamradhan.github.io/steam-games-analytics/)**. To run locally:
 
 ```bash
-uv run streamlit run streamlit_app.py
+uv run streamlit run Overview.py
 ```
 
 Opens at `localhost:8501` with six pages:
